@@ -20,7 +20,7 @@ public class Ut {
             }
         }
 
-        public static Object toObj(String json, Class clazz, Object defaultValue) {
+        public static <T> T toObj(String json, Class<T> clazz, T defaultValue) {
             try {
                 return om.readValue(json, clazz);
             } catch (JsonProcessingException e) {
