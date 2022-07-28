@@ -46,7 +46,7 @@ public class AppTest {
         list.add(new ArticleDto(2, "제목2", "내용2"));
         list.add(new ArticleDto(3, "제목3", "내용3"));
 
-        String json = Ut.json.toList(list, "");
+        String json = Ut.json.toStr(list, "");
         assertThat(json).isEqualTo("""
                 [{"id":1,"title":"제목1","body":"내용1"},{"id":2,"title":"제목2","body":"내용2"},{"id":3,"title":"제목3","body":"내용3"}]
                 """.trim());
@@ -60,7 +60,7 @@ public class AppTest {
         map.put(2, new ArticleDto(2, "제목2", "내용2"));
         map.put(3, new ArticleDto(3, "제목3", "내용3"));
 
-        String json = Ut.json.toMap(map, "");
+        String json = Ut.json.toStr(map, "");
         assertThat(json).isEqualTo("""
                 {"1":{"id":1,"title":"제목1","body":"내용1"},"2":{"id":2,"title":"제목2","body":"내용2"},"3":{"id":3,"title":"제목3","body":"내용3"}}
                 """.trim());
@@ -74,7 +74,7 @@ public class AppTest {
         list.add(new ArticleDto(2, "제목2", "내용2"));
         list.add(new ArticleDto(3, "제목3", "내용3"));
 
-        String json = Ut.json.toList(list, "");
+        String json = Ut.json.toStr(list, "");
 
         List<ArticleDto> articleDtosFromJson = Ut.json.toObj(json, new TypeReference<List<ArticleDto>>() {
         }, null);
@@ -89,13 +89,12 @@ public class AppTest {
         map.put(2, new ArticleDto(2, "제목2", "내용2"));
         map.put(3, new ArticleDto(3, "제목3", "내용3"));
 
-        String json = Ut.json.toMap(map, "");
+        String json = Ut.json.toStr(map, "");
 
         Map<Integer, ArticleDto> articleDtoMap = Ut.json.toObj(json, new TypeReference<Map<Integer, ArticleDto>>() {
         }, null);
 
         assertThat(articleDtoMap).isEqualTo(map);
-
     }
 
     @Test
