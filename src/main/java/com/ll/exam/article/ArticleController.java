@@ -4,7 +4,10 @@ import com.ll.exam.Rq;
 import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.util.Ut;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArticleController {
 
@@ -96,6 +99,12 @@ public class ArticleController {
 
     public void getArticles(Rq rq) {
         List<ArticleDto> articleDtoList = articleService.findAll();
-        rq.json(articleDtoList);
+
+        Map<String, Object> resultData = new LinkedHashMap<>();
+        resultData.put("resultCode", "S-1");
+        resultData.put("msg", "성공");
+        resultData.put("data", articleDtoList);
+
+        rq.json(resultData);
     }
 }
