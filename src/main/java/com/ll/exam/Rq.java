@@ -1,5 +1,6 @@
 package com.ll.exam;
 
+import com.ll.exam.util.Ut;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -146,5 +147,12 @@ public class Rq {
                 location.replace("%s");
                 </script>
                 """.formatted(uri));
+    }
+
+    public void json(Object data) {
+        resp.setContentType("application/json; charset=utf-8");
+
+        String json = Ut.json.toStr(data, "");
+        println(json);
     }
 }

@@ -96,8 +96,6 @@ public class ArticleController {
 
     public void getArticles(Rq rq) {
         List<ArticleDto> articleDtoList = articleService.findAll();
-
-        String json = Ut.json.toStr(articleDtoList, "");
-        rq.println(json);
+        rq.json(articleDtoList);
     }
 }
