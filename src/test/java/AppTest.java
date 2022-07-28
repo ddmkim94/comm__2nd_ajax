@@ -81,4 +81,29 @@ public class AppTest {
 
         assertThat(articleDtosFromJson).isEqualTo(list);
     }
+
+    @Test
+    void ObjectMapperTest__jsonToMap() throws JsonProcessingException {
+        Map<Integer, ArticleDto> map = new HashMap<>();
+        map.put(1, new ArticleDto(1, "제목1", "내용1"));
+        map.put(2, new ArticleDto(2, "제목2", "내용2"));
+        map.put(3, new ArticleDto(3, "제목3", "내용3"));
+
+        String json = Ut.json.toMap(map, "");
+
+        Map<Integer, ArticleDto> articleDtoMap = Ut.json.toObj(json, new TypeReference<Map<Integer, ArticleDto>>() {
+        }, null);
+
+        assertThat(articleDtoMap).isEqualTo(map);
+
+    }
+
+    @Test
+    void ObjectMapperTest__jsonToMapList() throws JsonProcessingException {
+        Map<Integer, ArticleDto> map = new HashMap<>();
+        map.put(1, new ArticleDto(1, "제목1", "내용1"));
+        map.put(2, new ArticleDto(2, "제목2", "내용2"));
+        map.put(3, new ArticleDto(3, "제목3", "내용3"));
+
+    }
 }

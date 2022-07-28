@@ -42,6 +42,15 @@ public class Ut {
             }
         }
 
+        // 제네릭은 컴파일 시점에는 다른 것을 인식하지 못함
+        public static <K, V> Map<K, V> toObj(String json, TypeReference<Map<K, V>> typeReference, Map<K, V> defaultValue) {
+            try {
+                return om.readValue(json, typeReference);
+            } catch (JsonProcessingException e) {
+                return null;
+            }
+        }
+
         public static String toList(List<ArticleDto> list, String defaultValue) {
             try {
                 return om.writeValueAsString(list);
