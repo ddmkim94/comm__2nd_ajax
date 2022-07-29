@@ -18,6 +18,10 @@ public class ArticleController {
         articleService = new ArticleService();
     }
 
+    public void showListAuto(Rq rq) {
+        rq.view("usr/article/listAuto");
+    }
+
     public void showList(Rq rq) {
         rq.setAttr("articles", articleService.findAll());
         rq.view("usr/article/list");
