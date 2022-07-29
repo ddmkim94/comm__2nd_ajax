@@ -20,4 +20,24 @@
     </div>
 </section>
 
+<section class="mt-5">
+    <div class="container px-3 mx-auto">
+        <h1 class="font-bold text-lg">테스트</h1>
+        <script>
+            function Article__loadLatest() {
+                fetch('/usr/article/getArticles/free')
+                    .then(data => data.json())
+                    .then(responseData => {
+                        $('.place-1').append(responseData.resultCode + "<br />");
+                    });
+            }
+        </script>
+        <button onclick="Article__loadLatest();" class="btn btn-xs">최신글 가져오기</button>
+
+        <div class="place-1 border-2 border-[red] min-h-[500px]">
+
+        </div>
+    </div>
+</section>
+
 <%@ include file="../common/foot.jspf"%>
