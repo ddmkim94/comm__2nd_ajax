@@ -6,12 +6,12 @@
 <script>
     let Articles__lastId = 0;
     function Articles__loadMore() {
-        fetch(`/usr/article/getArticles/free?fromId=${Articles__lastId}`)
+        fetch(`/usr/article/getArticles/free?fromId=\${Articles__lastId}`)
             .then(data => data.json())
             .then(responseData => {
-                console.log(responseData);
-                for ( const key in responseData.data ) {
-                    const article = responseData.data[key];
+                const articles = responseData.data;
+                for ( const index in articles ) {
+                    const article = articles[index];
                     const html = `
                     <li class="flex">
                         <a class="w-[40px] hover:underline hover:text-[red]" href="/usr/article/detail/free/\${article.id}">\${article.id}</a>
@@ -19,9 +19,11 @@
                         <a onclick="if ( !confirm('정말로 삭제하시겠습니까?') ) return false;" class="hover:underline hover:text-[red] mr-2" href="/usr/article/delete/free/\${article.id}?_method=DELETE">삭제</a>
                         <a class="hover:underline hover:text-[red]" href="/usr/article/modify/free/\${article.id}">수정</a>
                     </li>
-                    `;
-
+                `;
                     $('.articles').append(html);
+                }
+                if ( articles.length > 0 ) {
+                    Articles__lastId = articles[articles.length - 1].id;
                 }
             });
     }
