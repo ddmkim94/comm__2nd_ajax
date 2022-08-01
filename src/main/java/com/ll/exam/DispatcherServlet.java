@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.sql.SQLOutput;
+
 @WebServlet("/usr/*")
 public class DispatcherServlet extends HttpServlet {
     @Override
@@ -67,6 +69,9 @@ public class DispatcherServlet extends HttpServlet {
                 break;
             case "POST":
                 switch (rq.getActionPath()) {
+                    case "/usr/chat/writeMessageAjax":
+                        chatController.doWriteMessageAjax(rq);
+                        break;
                     case "/usr/chat/writeMessage":
                         chatController.doWriteMessage(rq);
                         break;
