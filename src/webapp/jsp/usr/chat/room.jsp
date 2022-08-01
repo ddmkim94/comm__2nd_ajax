@@ -31,6 +31,20 @@
 
 <script>
     let ChatMessages__lastId = 0;
+
+    function ChatMessages__remove(id) {
+        $.ajax({
+            url: `/usr/chat/deleteMessageAjax/\${id}`,
+            type: 'DELETE',
+            success: function(data) {
+                if ( data.msg ) {
+                    alert(data.msg);
+                }
+            },
+            dataType: 'json'
+        });
+    }
+
     function ChatMessages__loadMore() {
         fetch(`/usr/chat/getMessages/${room.id}/?fromId=\${ChatMessages__lastId}`)
             .then(data => data.json())
@@ -44,7 +58,7 @@
                         &nbsp;
                         <span>\${message.body}</a>
                         &nbsp;
-                        <a onclick="if ( !confirm('정말로 삭제하시겠습니까?') ) return false;" class="hover:underline hover:text-[red] mr-2" href="/usr/chat/deleteMessage/\${message.id}?_method=DELETE">삭제</a>
+                        <a onclick="if ( !confirm('정말로 삭제하시겠습니까?') ) return false;" class="hover:underline hover:text-[red] mr-2" href="/usr/chat/deleteMessageAjax/\${message.id}?_method=DELETE">삭제</a>
                     </li>
                 `;
                     $('.chat-messages').append(html);

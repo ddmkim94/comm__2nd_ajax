@@ -95,6 +95,9 @@ public class DispatcherServlet extends HttpServlet {
                     case "/usr/chat/deleteMessage":
                         chatController.deleteMessage(rq);
                         break;
+                    case "/usr/chat/deleteMessageAjax":
+                        chatController.deleteMessageAjax(rq);
+                        break;
                     case "/usr/article/delete":
                         articleController.deleteArticle(rq);
                         break;
@@ -105,6 +108,11 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         // 똑같은 코드의 중복을 막기 위해서 doPost()에서 doGet() 호출!
+        doGet(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         doGet(req, resp);
     }
 }
