@@ -182,4 +182,14 @@ public class Rq {
     public void failJson(Object data) {
         json(data, "F-1", "실패");
     }
+
+    public String getRouteMethod() {
+        String method = getParam("_method", "");
+
+        if (method.length() > 0 ) {
+            return method.toUpperCase();
+        }
+
+        return req.getMethod();
+    }
 }

@@ -23,7 +23,7 @@ public class DispatcherServlet extends HttpServlet {
         // getRequestURI는
         // http://localhost:8081/usr/article/list/free?page=1 에서
         // /usr/article/list/free 부분만 가져온다.
-        switch (rq.getMethod()) {
+        switch (rq.getRouteMethod()) {
             case "GET":
                 switch (rq.getActionPath()) {
                     case "/usr/chat/createRoom":
@@ -93,6 +93,9 @@ public class DispatcherServlet extends HttpServlet {
                 switch (rq.getActionPath()) {
                     case "/usr/chat/deleteRoom":
                         chatController.deleteRoom(rq);
+                        break;
+                    case "/usr/chat/deleteMessage":
+                        chatController.deleteMessage(rq);
                         break;
                     case "/usr/article/delete":
                         articleController.deleteArticle(rq);
