@@ -36,7 +36,7 @@ public class ArticleController {
         String body = rq.getParam("body", "");
 
         long id = articleService.write(title, body);
-        rq.replace("/usr/article/list/free", "%d번 게시물이 생성 되었습니다.".formatted(id));
+        rq.replace("/usr/article/detail/free/%d".formatted(id), "%d번 게시물이 생성 되었습니다.".formatted(id));
     }
 
     public void showDetail(Rq rq) {
