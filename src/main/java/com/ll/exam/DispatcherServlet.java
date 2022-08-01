@@ -8,8 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.sql.SQLOutput;
-
 @WebServlet("/usr/*")
 public class DispatcherServlet extends HttpServlet {
     @Override
@@ -44,11 +42,8 @@ public class DispatcherServlet extends HttpServlet {
                     case "/usr/chat/getMessages":
                         chatController.getMessages(rq);
                         break;
-                    case "/usr/article/listAuto":
-                        articleController.showListAuto(rq);
-                        break;
-                    case "/usr/article/getArticles":
-                        articleController.getArticles(rq);
+                    case "/usr/article/modify":
+                        articleController.showModify(rq);
                         break;
                     case "/usr/article/detail":
                         articleController.showDetail(rq);
@@ -56,11 +51,14 @@ public class DispatcherServlet extends HttpServlet {
                     case "/usr/article/list":
                         articleController.showList(rq);
                         break;
+                    case "/usr/article/listAuto":
+                        articleController.showListAuto(rq);
+                        break;
+                    case "/usr/article/getArticles":
+                        articleController.getArticles(rq);
+                        break;
                     case "/usr/article/write":
                         articleController.showWrite(rq);
-                        break;
-                    case "/usr/article/modify":
-                        articleController.showModify(rq);
                         break;
                     case "/usr/member/login":
                         memberController.showLogin(rq);
@@ -69,23 +67,23 @@ public class DispatcherServlet extends HttpServlet {
                 break;
             case "POST":
                 switch (rq.getActionPath()) {
-                    case "/usr/chat/writeMessageAjax":
-                        chatController.doWriteMessageAjax(rq);
-                        break;
                     case "/usr/chat/writeMessage":
-                        chatController.doWriteMessage(rq);
+                        chatController.writeMessage(rq);
+                        break;
+                    case "/usr/chat/writeMessageAjax":
+                        chatController.writeMessageAjax(rq);
                         break;
                     case "/usr/chat/createRoom":
-                        chatController.doCreateRoom(rq);
+                        chatController.createRoom(rq);
                         break;
                     case "/usr/chat/modifyRoom":
-                        chatController.doModifyRoom(rq);
+                        chatController.modifyRoom(rq);
                         break;
                     case "/usr/article/write":
-                        articleController.doWrite(rq);
+                        articleController.write(rq);
                         break;
                     case "/usr/article/modify":
-                        articleController.doModify(rq);
+                        articleController.modify(rq);
                         break;
                 }
                 break;

@@ -31,7 +31,7 @@ public class ArticleController {
         rq.view("usr/article/write");
     }
 
-    public void doWrite(Rq rq) {
+    public void write(Rq rq) {
         String title = rq.getParam("title", "");
         String body = rq.getParam("body", "");
 
@@ -92,7 +92,7 @@ public class ArticleController {
         rq.view("usr/article/modify");
     }
 
-    public void doModify(Rq rq) {
+    public void modify(Rq rq) {
         long id = rq.getLongPathValueByIndex(1, 0);
         String title = rq.getParam("title", "");
         String body = rq.getParam("body", "");
