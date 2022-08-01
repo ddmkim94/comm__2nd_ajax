@@ -1,6 +1,7 @@
 package com.ll.exam;
 
 import com.ll.exam.article.ArticleController;
+import com.ll.exam.chat.ChatController;
 import com.ll.exam.member.MemberController;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ public class DispatcherServlet extends HttpServlet {
 
         MemberController memberController = new MemberController();
         ArticleController articleController = new ArticleController();
+        ChatController chatController = new ChatController();
 
         // getRequestURI는
         // http://localhost:8081/usr/article/list/free?page=1 에서
@@ -22,6 +24,18 @@ public class DispatcherServlet extends HttpServlet {
         switch (rq.getMethod()) {
             case "GET":
                 switch (rq.getActionPath()) {
+                    case "/usr/chat/createRoom":
+                        chatController.showCreateRoom(rq);
+                        break;
+                    case "/usr/chat/modifyRoom":
+                        chatController.showModifyRoom(rq);
+                        break;
+                    case "/usr/chat/roomList":
+                        chatController.showRoomList(rq);
+                        break;
+                    case "/usr/chat/room":
+                        chatController.showRoom(rq);
+                        break;
                     case "/usr/article/listAuto":
                         articleController.showListAuto(rq);
                         break;
@@ -39,9 +53,6 @@ public class DispatcherServlet extends HttpServlet {
                     case "/usr/article/modify":
                         articleController.showModify(rq);
                         break;
-                    case "/usr/article/delete":
-                        articleController.deleteArticle(rq);
-                        break;
                     case "/usr/member/login":
                         memberController.showLogin(rq);
                         break;
@@ -49,6 +60,15 @@ public class DispatcherServlet extends HttpServlet {
                 break;
             case "POST":
                 switch (rq.getActionPath()) {
+                    case "/usr/chat/writeMessage":
+                        chatController.doWriteMessage(rq);
+                        break;
+                    case "/usr/chat/createRoom":
+                        chatController.doCreateRoom(rq);
+                        break;
+                    case "/usr/chat/modifyRoom":
+                        chatController.doModifyRoom(rq);
+                        break;
                     case "/usr/article/write":
                         articleController.doWrite(rq);
                         break;
@@ -57,6 +77,15 @@ public class DispatcherServlet extends HttpServlet {
                         break;
                 }
                 break;
+            case "DELETE":
+                switch (rq.getActionPath()) {
+                    case "/usr/chat/deleteRoom":
+                        chatController.deleteRoom(rq);
+                        break;
+                    case "/usr/article/delete":
+                        articleController.deleteArticle(rq);
+                        break;
+                }
         }
     }
 
