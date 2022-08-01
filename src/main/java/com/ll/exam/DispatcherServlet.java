@@ -36,6 +36,9 @@ public class DispatcherServlet extends HttpServlet {
                     case "/usr/chat/room":
                         chatController.showRoom(rq);
                         break;
+                    case "/usr/chat/roomManual":
+                        chatController.showRoomManual(rq);
+                        break;
                     case "/usr/article/listAuto":
                         articleController.showListAuto(rq);
                         break;
